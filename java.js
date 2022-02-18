@@ -1,11 +1,19 @@
 let form=document.getElementById('addForm');
 let itemlist=document.getElementById('items');
-
+let sele=document.querySelectorAll('li')
+//console.log(sele);
 //submit function 
 form.addEventListener('submit' , Takeitem);
 //delete function 
 itemlist.addEventListener('click',deleteFn)
 
+for(let i=0;i<sele.length;i++){
+
+    let edbtn=document.createElement('button');
+    edbtn.className='edit-button btn-danger btn-sm float-right edit';
+    edbtn.appendChild(document.createTextNode('Edit  '));
+    sele[i].appendChild(edbtn);
+}
 
 //call submit function
 function Takeitem(e){
@@ -24,6 +32,13 @@ function Takeitem(e){
     //append button to li
     li.appendChild(dlt);
     itemlist.appendChild(li);
+
+    //Edit button
+    let edbtn=document.createElement('button');
+    edbtn.className='edit-button btn-danger btn-sm float-right edit';
+    edbtn.appendChild(document.createTextNode('Edit'));
+    li.appendChild(edbtn);
+    //itemlist.appendChild(li);
 }
 
 
@@ -37,3 +52,4 @@ function deleteFn(e){
         }
     }
 }
+
