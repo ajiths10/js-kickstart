@@ -1,12 +1,16 @@
 let form=document.getElementById('addForm');
 let itemlist=document.getElementById('items');
 let sele=document.querySelectorAll('li')
+let filter=document.getElementById('filter');
 
 //submit function 
 form.addEventListener('submit' , Takeitem);
 
 //delete function 
 itemlist.addEventListener('click',deleteFn)
+
+//filter listner
+filter.addEventListener('keyup', filterfn)
 
 for(let i=0;i<sele.length;i++){
 
@@ -52,4 +56,23 @@ function deleteFn(e){
             itemlist.removeChild(li);
         }
     }
+}
+
+//filter
+function filterfn(e){
+    //convert to lowercase
+    let text=e.target.value.toLowerCase();
+    //console.log(text);
+    let items=itemlist.getElementsByTagName('li');
+    //console.log(items);
+    //convert to array
+    Array.from(items).forEach(function(item){
+        let itemName = item.firstChild.textContent;
+        //console.log(itemName);
+        if(itemName.toLowerCase().indexOf(text) != -1){
+            item.style.display="block";
+        }else{
+            item.style.display='none';
+        }
+    });
 }
