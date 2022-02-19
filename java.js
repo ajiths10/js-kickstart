@@ -84,17 +84,33 @@ function filterfn(e){
     let text=e.target.value.toLowerCase();
     //console.log(text);
     let items=itemlist.getElementsByTagName('li');
+    let itemDiscribtion=itemlist.getElementsByTagName('div');
     //console.log(items);
     //convert to array
     Array.from(items).forEach(function(item){
         let itemName = item.firstChild.textContent;
-        //console.log(itemName);
-        if(itemName.toLowerCase().indexOf(text) != -1){
+         console.log(itemName);
+       if(itemName.toLowerCase().indexOf(text) != -1){
             item.style.display="block";
-        }else{
+        }else if(itemDiscribtion !=' '){
+            Array.from(itemDiscribtion).forEach(function(itemZ){
+                let AAA = itemZ.firstChild.textContent;
+                 console.log(AAA);
+                if(AAA.toLowerCase().indexOf(text) != -1){
+                    itemZ.style.display="block";
+                }else{
+                    itemZ.style.display='none';
+                }
+            });   
+        }
+        else{
             item.style.display='none';
         }
     });
+
+console.log(Array.from(itemDiscribtion))
+
+    
 }
 
 
@@ -113,12 +129,9 @@ newDiv.appendChild(newDivText);
 //console.log(newDiv)
     
 //add element to the page
-let container=document.querySelector(`ul .list-group-item`);
+//let container=document.querySelector(`li .list-group-item`);
 let list=document.querySelector('form li');
 //console.log(newDiv);
 liSelector[j].insertBefore(newDiv,list);
 j=j+1;
 }
-
-
-
