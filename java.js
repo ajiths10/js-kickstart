@@ -1,6 +1,6 @@
 let form=document.getElementById('addForm');
 let itemlist=document.getElementById('items');
-let sele=document.querySelectorAll('li')
+let liSelector=document.querySelectorAll('li');
 let filter=document.getElementById('filter');
 let d=1;
 
@@ -13,12 +13,12 @@ itemlist.addEventListener('click',deleteFn)
 //filter listner
 filter.addEventListener('keyup', filterfn)
 
-for(let i=0;i<sele.length;i++){
+for(let i=0;i<liSelector.length;i++){
 
     let edbtn=document.createElement('button');
     edbtn.className='edit-button btn-danger btn-sm float-right edit';
     edbtn.appendChild(document.createTextNode('Edit'));
-    sele[i].appendChild(edbtn);
+    liSelector[i].appendChild(edbtn);
 }
 
 //call submit function
@@ -59,10 +59,10 @@ function Takeitem(e){
     //console.log(newDiv)
     
     //add element to the page
-    let M=document.querySelector(`ul .list-group-item`)
-    let TT=document.querySelector('form li');
+    let container=document.querySelector(`ul .list-group-item`)
+    let list=document.querySelector('form li');
     //console.log(newDiv);
-    sele[j].insertBefore(newDiv,TT);
+    liSelector[j].insertBefore(newDiv,list);
 
 }
 
@@ -100,7 +100,7 @@ function filterfn(e){
 
 //Add discription to all items
 let j=0;
-while(j<=sele.length){
+while(j<=liSelector.length){
 //create Div
 let newDiv=document.createElement('div')
 newDiv.className='Description';
@@ -113,10 +113,10 @@ newDiv.appendChild(newDivText);
 //console.log(newDiv)
     
 //add element to the page
-let M=document.querySelector(`ul .list-group-item`);
-let TT=document.querySelector('form li');
+let container=document.querySelector(`ul .list-group-item`);
+let list=document.querySelector('form li');
 //console.log(newDiv);
-sele[j].insertBefore(newDiv,TT);
+liSelector[j].insertBefore(newDiv,list);
 j=j+1;
 }
 
