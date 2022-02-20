@@ -27,10 +27,10 @@ function Takeitem(e){
     let NewItem=document.getElementById('item').value;
     let li=document.createElement('li');
     li.className='list-group-item';
-    li.appendChild(document.createTextNode(`Item name : ${NewItem}`));
+    li.appendChild(document.createTextNode(`${NewItem}`));
     itemlist.appendChild(li);
     let newDescription=document.getElementById('itemD').value;
-    li.appendChild(document.createTextNode(`Description : ${newDescription}`));
+    li.appendChild(document.createTextNode(` / Description: ${newDescription}`));
     itemlist.appendChild(li);
 
     //delete button
@@ -45,7 +45,6 @@ function Takeitem(e){
     edbtn.className='edit-button btn-danger btn-sm float-right edit';
     edbtn.appendChild(document.createTextNode('Edit'));
     li.appendChild(edbtn);
-
 }
 
 
@@ -66,7 +65,7 @@ function filterfn(e){
     let text=e.target.value.toLowerCase();
     //console.log(text);
     let items=itemlist .getElementsByTagName('li');
-    //console.log(items);
+    console.log(items);
     Array.from(items).forEach(function(item){
         let itemName = item.textContent;
         if(itemName.toLowerCase().indexOf(text) != -1){
