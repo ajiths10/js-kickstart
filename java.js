@@ -23,7 +23,7 @@ function Takeitem(e){
     e.preventDefault();
     //console.log(e);
 
-    //Adding name
+    //Adding name & description
     let NewItem=document.getElementById('item').value;
     let li=document.createElement('li');
     li.className='list-group-item';
