@@ -27,7 +27,11 @@ function Takeitem(e){
     let NewItem=document.getElementById('item').value;
     let li=document.createElement('li');
     li.className='list-group-item';
-    li.appendChild(document.createTextNode(NewItem));
+    li.appendChild(document.createTextNode(`Item name : ${NewItem}`));
+    itemlist.appendChild(li);
+    let newDescription=document.getElementById('itemD').value;
+    li.appendChild(document.createTextNode(`Description : ${newDescription}`));
+    itemlist.appendChild(li);
 
     //delete button
     let dlt=document.createElement('button');
@@ -35,26 +39,13 @@ function Takeitem(e){
     dlt.appendChild(document.createTextNode('x'));
     li.appendChild(dlt);
     itemlist.appendChild(li);
-
+    
     //Edit button new creating li
     let edbtn=document.createElement('button');
     edbtn.className='edit-button btn-danger btn-sm float-right edit';
     edbtn.appendChild(document.createTextNode('Edit'));
     li.appendChild(edbtn);
-    
 
-    //create Div
-    //Adding description
-    let NewDes=document.getElementById('itemD').value;
-    let newDiv=document.createElement('div')
-    newDiv.className='Div-class';
-    newDiv.id='div1';
-    let newDivText=document.createTextNode(NewDes)
-    newDiv.appendChild(newDivText);
-    //console.log(newDiv)
-    let list=document.querySelector('form li');
-    //console.log(newDiv);
-    li.insertBefore(newDiv,list);
 }
 
 
@@ -74,11 +65,10 @@ function filterfn(e){
     //convert to lowercase
     let text=e.target.value.toLowerCase();
     //console.log(text);
-    let items=document.getElementsByTagName('li');
-    console.log(items);
-    items.child
+    let items=itemlist .getElementsByTagName('li');
+    //console.log(items);
     Array.from(items).forEach(function(item){
-        let itemName = item.firstChild.textContent;
+        let itemName = item.textContent;
         if(itemName.toLowerCase().indexOf(text) != -1){
             item.style.display='block';
         }else{
