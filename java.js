@@ -2,19 +2,16 @@ let form=document.getElementById('addForm');
 let itemlist=document.getElementById('items');
 let liSelector=document.querySelectorAll('li');
 let filter=document.getElementById('filter');
-let d=1;
 
 //submit function 
 form.addEventListener('submit' , Takeitem);
-
 //delete function 
 itemlist.addEventListener('click',deleteFn)
-
 //filter listner
 filter.addEventListener('keyup', filterfn)
 
-for(let i=0;i<liSelector.length;i++){
 
+for(let i=0;i<liSelector.length;i++){
     let edbtn=document.createElement('button');
     edbtn.className='edit-button btn-danger btn-sm float-right edit';
     edbtn.appendChild(document.createTextNode('Edit'));
@@ -24,7 +21,9 @@ for(let i=0;i<liSelector.length;i++){
 //call submit function
 function Takeitem(e){
     e.preventDefault();
-    //console.log(1);
+    //console.log(e);
+
+    //Adding name
     let NewItem=document.getElementById('item').value;
     let li=document.createElement('li');
     li.className='list-group-item';
@@ -32,11 +31,8 @@ function Takeitem(e){
 
     //delete button
     let dlt=document.createElement('button');
-    //add class to the button
     dlt.className='btn btn-danger btn-sm float-right delete';
-    //append text node
     dlt.appendChild(document.createTextNode('x'));
-    //append button to li
     li.appendChild(dlt);
     itemlist.appendChild(li);
 
@@ -47,23 +43,18 @@ function Takeitem(e){
     li.appendChild(edbtn);
     
 
-//create Div
+    //create Div
+    //Adding description
+    let NewDes=document.getElementById('itemD').value;
     let newDiv=document.createElement('div')
     newDiv.className='Div-class';
     newDiv.id='div1';
-    //create text node
-    let newDivText=document.createTextNode(`description ${d}`)
-    d=d+1;
-    //add to div
+    let newDivText=document.createTextNode(NewDes)
     newDiv.appendChild(newDivText);
     //console.log(newDiv)
-    
-    //add element to the page
-    let container=document.querySelector(`ul .list-group-item`)
     let list=document.querySelector('form li');
     //console.log(newDiv);
-    liSelector[j].insertBefore(newDiv,list);
-
+    li.insertBefore(newDiv,list);
 }
 
 
@@ -83,55 +74,15 @@ function filterfn(e){
     //convert to lowercase
     let text=e.target.value.toLowerCase();
     //console.log(text);
-    let items=itemlist.getElementsByTagName('li');
-    let itemDiscribtion=itemlist.getElementsByTagName('div');
-    //console.log(items);
-    //convert to array
+    let items=document.getElementsByTagName('li');
+    console.log(items);
+    items.child
     Array.from(items).forEach(function(item){
         let itemName = item.firstChild.textContent;
-         console.log(itemName);
-       if(itemName.toLowerCase().indexOf(text) != -1){
-            item.style.display="block";
-        }else if(itemDiscribtion !=' '){
-            Array.from(itemDiscribtion).forEach(function(itemZ){
-                let AAA = itemZ.firstChild.textContent;
-                 console.log(AAA);
-                if(AAA.toLowerCase().indexOf(text) != -1){
-                    itemZ.style.display="block";
-                }else{
-                    itemZ.style.display='none';
-                }
-            });   
-        }
-        else{
+        if(itemName.toLowerCase().indexOf(text) != -1){
+            item.style.display='block';
+        }else{
             item.style.display='none';
         }
     });
-
-console.log(Array.from(itemDiscribtion))
-
-    
-}
-
-
-//Add discription to all items
-let j=0;
-while(j<=liSelector.length){
-//create Div
-let newDiv=document.createElement('div')
-newDiv.className='Description';
-newDiv.id='des1';
-//create text node
-let newDivText=document.createTextNode(`description ${d}`)
-d=d+1;
-//add to div
-newDiv.appendChild(newDivText);
-//console.log(newDiv)
-    
-//add element to the page
-//let container=document.querySelector(`li .list-group-item`);
-let list=document.querySelector('form li');
-//console.log(newDiv);
-liSelector[j].insertBefore(newDiv,list);
-j=j+1;
 }
